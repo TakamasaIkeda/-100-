@@ -5,20 +5,19 @@
 各行の1列目だけを抜き出したものをcol1.txtに，2列目だけを抜き出したものをcol2.txtとしてファイルに保存せよ．確認にはcutコマンドを用いよ．
 """
 
-def line_count(filename):
+def append_data(filename):
 
   f = open(filename,"rb")
   col1 = open("col1.txt", "wb")
   col2 = open("col2.txt", "wb")
 
+  
+  for i in f:
+    split_line = i.split("\t")
+    col1.write(split_line[0] + "\n")
+    col2.write(split_line[1] + "\n")
 
-  for i,x in enumerate(f):
-    if(i%2 == 0):
-    #col1.txtへ
-      col1.write(x)
-    else:
-    #col2.txtへ
-      col2.write(x) 
+
 
   f.close()
   col1.close()
@@ -26,4 +25,4 @@ def line_count(filename):
 
 
 if __name__ == "__main__":
-  lines = line_count("hightemp.txt")
+  append_data("hightemp.txt")
